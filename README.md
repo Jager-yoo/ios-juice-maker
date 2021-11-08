@@ -1,14 +1,15 @@
 ## 📝 프로젝트 정보
 
 - Project: 쥬스메이커
-
 - Date: [3주] 2021-10-18 ~ 2021-11-05
-
 - Contributors: 요한(@YohanBlessYou, 예거(@Jager-yoo)
-
 - Reviewer: 엘림 (@lina0322)
 
----
+## 💎 PR 모음
+
+- [STEP 3](https://github.com/yagom-academy/ios-juice-maker/pull/137)
+- [STEP 2](https://github.com/yagom-academy/ios-juice-maker/pull/122)
+- [STEP 1](https://github.com/yagom-academy/ios-juice-maker/pull/109)
 
 ## 🔑 키워드
 
