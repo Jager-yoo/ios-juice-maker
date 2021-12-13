@@ -11,6 +11,8 @@ class EditAmountViewController: UIViewController {
     private let fruitStore = FruitStore.shared
     private let feedbackGenerator = UISelectionFeedbackGenerator()
     
+    @IBOutlet var fruitImages: [UILabel]!
+    
     @IBOutlet private weak var strawberryAmountLabel: UILabel!
     @IBOutlet private weak var bananaAmountLabel: UILabel!
     @IBOutlet private weak var mangoAmountLabel: UILabel!
@@ -49,7 +51,7 @@ class EditAmountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        applyAccessibility()
         do {
             try updateAllFruitAmountLabels()
             try initializeAllFruitAmountSteppers()
@@ -68,10 +70,15 @@ class EditAmountViewController: UIViewController {
               }
         
         strawberryAmountLabel.text = String(strawberryAmount)
+        strawberryAmountLabel.accessibilityLabel = "\(strawberryAmount)개"
         bananaAmountLabel.text = String(bananaAmount)
+        bananaAmountLabel.accessibilityLabel = "\(bananaAmount)개"
         mangoAmountLabel.text = String(mangoAmount)
+        mangoAmountLabel.accessibilityLabel = "\(mangoAmount)개"
         kiwiAmountLabel.text = String(kiwiAmount)
+        kiwiAmountLabel.accessibilityLabel = "\(kiwiAmount)개"
         pineappleAmountLabel.text = String(pineappleAmount)
+        pineappleAmountLabel.accessibilityLabel = "\(pineappleAmount)개"
     }
     
     private func initializeAllFruitAmountSteppers() throws {
@@ -134,5 +141,13 @@ class EditAmountViewController: UIViewController {
                 exit(-1)
             }
         }
+    }
+    
+    private func applyAccessibility() {
+        fruitImages.forEach { image in
+            image.accessibilityLabel = "현재 \(image.text!) 재고"
+        }
+        
+        strawberryAmountStepper.accessibilityUserInputLabels = ["감소", "증가"]
     }
 }

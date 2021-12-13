@@ -11,6 +11,8 @@ class JuiceOrderViewController: UIViewController {
     private let fruitStore = FruitStore.shared
     private let feedbackGenerator = UINotificationFeedbackGenerator()
     
+    @IBOutlet var fruitImages: [UILabel]!
+    
     @IBOutlet private weak var strawberryAmountLabel: UILabel!
     @IBOutlet private weak var bananaAmountLabel: UILabel!
     @IBOutlet private weak var mangoAmountLabel: UILabel!
@@ -48,7 +50,7 @@ class JuiceOrderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        applyAccessibilityLabelToFruitImages()
         applyAutoFontSizeToAllButtonLabels()
         notificationCenter.addObserver(self,
                                     selector: #selector(modalDismissCompletionHandler),
@@ -80,10 +82,15 @@ class JuiceOrderViewController: UIViewController {
               }
         
         strawberryAmountLabel.text = String(strawberryAmount)
+        strawberryAmountLabel.accessibilityLabel = "\(strawberryAmount)개"
         bananaAmountLabel.text = String(bananaAmount)
+        bananaAmountLabel.accessibilityLabel = "\(bananaAmount)개"
         mangoAmountLabel.text = String(mangoAmount)
+        mangoAmountLabel.accessibilityLabel = "\(mangoAmount)개"
         kiwiAmountLabel.text = String(kiwiAmount)
+        kiwiAmountLabel.accessibilityLabel = "\(kiwiAmount)개"
         pineappleAmountLabel.text = String(pineappleAmount)
+        pineappleAmountLabel.accessibilityLabel = "\(pineappleAmount)개"
     }
     
     private func orderJuice(_ juice: JuiceMaker.Juice) {
@@ -154,6 +161,21 @@ class JuiceOrderViewController: UIViewController {
         mangoJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
         strawberryBananaJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
         mangoKiwiJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        
+        strawberryJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        bananaJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        pineappleJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        kiwiJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        mangoJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        strawberryBananaJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        mangoKiwiJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
+    }
+
+    private func applyAccessibilityLabelToFruitImages() {
+        navigationItem.accessibilityTraits = .none // 이거 안 되네
+        fruitImages.forEach { image in
+            image.accessibilityLabel = "현재 \(image.text!) 재고"
+        }
     }
 }
 
